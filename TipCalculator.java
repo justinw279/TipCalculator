@@ -16,7 +16,7 @@ public class TipCalculator {
         int peopleInGroup = scan.nextInt();
         scan.nextLine();
         System.out.print("Tip percentage? (0-100) ");
-        int tipPercentage = scan.nextInt();
+        double tipPercentage = scan.nextDouble();
         scan.nextLine();
 
         double totalCost = 0;
@@ -41,10 +41,30 @@ public class TipCalculator {
         }
 
         for(int i = 0; i < listOfPrices.size(); i++) {
-            totalCost += listOfPrices.get(i);
+            totalBillBeforeTip += listOfPrices.get(i);
         }
-        
-        System.out.print(totalCost);
+        totalBillBeforeTip = (double) Math.round(totalBillBeforeTip * 100) / 100;
+        System.out.println("------------------------------\nTotal bill before tip: $" + totalBillBeforeTip);
+        System.out.println("Tip percentage: $" + tipPercentage);
+        totalTip = totalBillBeforeTip * (tipPercentage / 100);
+        totalTip =  (double) Math.round(totalTip * 100) / 100;
+        System.out.println("Total tip: $" + totalTip);
+        totalCost = totalTip + totalBillBeforeTip;
+        totalCost =  (double) Math.round(totalCost * 100) / 100;
+        System.out.println("Total bill with tip: $" + totalCost);
+        perPersonCostBeforeTip = totalBillBeforeTip / peopleInGroup;
+        perPersonCostBeforeTip = Math.round(perPersonCostBeforeTip * 100) / 100.0;
+        System.out.println("Per person cost before tip: $" + perPersonCostBeforeTip);
+        tipPerPerson = totalTip / peopleInGroup;
+        tipPerPerson =  (double) Math.round(tipPerPerson * 100) / 100;
+        System.out.println("Tip per person: $" + tipPerPerson);
+        totalCostPerPerson = totalCost / peopleInGroup;
+        totalCostPerPerson =  (double) Math.round(totalCostPerPerson * 100) / 100;
+        System.out.println("Total cost per person: $" + totalCostPerPerson + "\n------------------------------");
+        System.out.println("Items ordered: ");
+        for(int i = 0; i < listOfItems.size(); i++) {
+            System.out.println(listOfItems.get(i) + ", costed $" + listOfPrices.get(i));
+        }
 
 
 
